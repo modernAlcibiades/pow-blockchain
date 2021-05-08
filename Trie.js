@@ -84,15 +84,13 @@ class Trie {
                 console.log(`Adding ${store}`);
 
                 let keyNode = new TrieNode(store, node);
-                //keyNode.children = node.children;
-                //keyNode.value = node.value;
 
                 console.log(`Adding ${hash}`);
                 node.key = hash;
                 node.value = value;
                 node.hasValue = true;
                 node.children = {};
-                node.children[key[i]] == keyNode;
+                node.children[key[i]] = keyNode;
             } else {
                 // Add remaining part of the hash
                 // split the key
@@ -112,6 +110,7 @@ class Trie {
                 console.log(`Adding ${store2}`);
                 let newNode = new TrieNode(store2,);
                 newNode.hasValue = true;
+                newNode.value = value;
                 node.children[hash[i]] = newNode;
             }
         }

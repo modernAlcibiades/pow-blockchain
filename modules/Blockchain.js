@@ -1,7 +1,9 @@
+const Trie = require('./Trie');
 
 class Blockchain {
     constructor() {
         this.blocks = [];
+        this.blockTrie = new Trie();
     }
 
     addBlock(block) {

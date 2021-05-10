@@ -34,7 +34,6 @@ class Trie {
         return false;
     }
 
-
     getValue(hash, node = this.root) {
         const key = node.key;
         if (key != null) {
@@ -54,7 +53,7 @@ class Trie {
         if (node.key == hash) {
             node.value = value;
             node.hasValue = true;
-            console.log(node.key, node.value);
+            //console.log(node.key, node.value);
         } else {
             let i = 0;
             let key = node.key;
@@ -68,7 +67,7 @@ class Trie {
             } else if (i == key.length) {
                 // Key finished, add new node
                 const store = hash.slice(i, hash.length);
-                console.log(`Adding ${store}`);
+                //console.log(`Adding ${store}`);
                 if (hash[i] in node.children) {
                     this.insert(store, value, node.children[hash[i]]);
                 } else {
@@ -81,11 +80,11 @@ class Trie {
                 // hash finished, split the key
                 // Move the children of the node to the next node with the rest of the key
                 const store = key.slice(i, key.length);
-                console.log(`Adding ${store}`);
+                //console.log(`Adding ${store}`);
 
                 let keyNode = new TrieNode(store, node);
 
-                console.log(`Adding ${hash}`);
+                //console.log(`Adding ${hash}`);
                 node.key = hash;
                 node.value = value;
                 node.hasValue = true;
@@ -96,18 +95,16 @@ class Trie {
                 // split the key
                 const store1 = key.slice(i, key.length);
                 let keyNode = new TrieNode(store1, node);
-                console.log(`Adding ${store1}`);
-                //keyNode.children = node.children;
-                //keyNode.hasValue = node.hasValue;
+                //console.log(`Adding ${store1}`);
                 node.key = hash.slice(0, i);
-                console.log(`Adding ${node.key}`);
+                //console.log(`Adding ${node.key}`);
                 node.children = {};
                 node.value = null;
                 node.hasValue = false;
                 node.children[key[i]] = keyNode;
 
                 const store2 = hash.slice(i, hash.length);
-                console.log(`Adding ${store2}`);
+                //console.log(`Adding ${store2}`);
                 let newNode = new TrieNode(store2,);
                 newNode.hasValue = true;
                 newNode.value = value;
@@ -135,6 +132,6 @@ function test_trie() {
     trie.print();
 }
 
-test_trie();
+//test_trie();
 
-//module.exports = Trie;
+module.exports = Trie;

@@ -1,10 +1,14 @@
 // Start program to interact with the blockchain
+const Block = require('./modules/Block');
+const Blockchain = require('./modules/Blockchain');
+const config = require('./config');
 
 // 0. Storage
 // BlockChain : Longest chain available
 // BlocksTrie : Hash of blocks, value = Block
 // Mempool    : Trie of transactions
-
+daemon = new Daemon(config);
+miner = new Miner(config);
 
 
 // 1. Listen

@@ -1,7 +1,8 @@
 const SHA256 = require("crypto-js/sha256");
 
 class Transaction {
-    constructor(data, hash) {
+    constructor(data) {
+        // Data : Input UTXOs, OutputUTXOs
         this.data = data;
         this.hash = this.getHash();
     }

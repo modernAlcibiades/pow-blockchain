@@ -1,22 +1,8 @@
 const SHA256 = require("crypto-js/sha256");
 const crypto = require("crypto-js");
 const EC = require('elliptic').ec;
-
+const UTXO = require('./modules/UTXO');
 const ec = new EC('secp256k1');
-
-class UTXO {
-    constructor(transactionHash, amount) {
-        // Make sure UTXO are uniquely identifiable
-        //this.transactionHash = transactionHash;
-        this.owner = owner;
-        this.spent = false;
-        this.amount = amount;
-    }
-
-    spent() {
-        this.spent = true;
-    }
-}
 
 class Wallet {
     constructor(pin) {
@@ -60,18 +46,23 @@ class Wallet {
         if (amount > 0 && this.address.balance > amount) {
             // Pull amount from available UTXOs
             let sum = 0;
-            let TXO = [];
+            let inputTXO = [];
             while (sum < amount) {
                 const txn = shift(this.UTXO);
-                TXO.push(txn);
+                inputTXO.push(txn);
                 sum += txn.amount;
             }
-        }
-    }
 
-    cancel(UTXO) {
-        for (let i = 0; i < UTXO.length; i++) {
-            this
+            let outputTXO = [
+                new UTXO(to, amount),
+                new UTXO(this.address.name, sum - amount)
+            ]
+            data = {
+                'inputs': inputTXO,
+                'outputs': outputTXO
+            }
+            txn = new Transaction(data);
+            return txn;
         }
     }
 }
